@@ -5,12 +5,13 @@
     * mistral : 오픈소스 최강(2023FW기준)
 
 1. 기본 패키지 설치   
-`pip install langchain langchain-community langchain-core  beautifulsoup4 tiktoken chromadb` 
+   * `pip install langchain langchain-community langchain-core  beautifulsoup4 tiktoken chromadb` 
 
-2. 사용한 모델 설치 
-`ollama pull nomic-embed-text` 
+2. 사용한 모델 설치    
+    
+   * `ollama pull nomic-embed-text`     
+    
+   * `ollama pull mistral`    
 
-`ollama pull mistral` 
-
-3. 파이썬 실행 
-`python3 ui.py` 
+3. 파이썬 실행     
+   * `python3 ui.py` 
