@@ -10,9 +10,9 @@ from langchain.output_parsers import PydanticOutputParser
 from langchain.text_splitter import CharacterTextSplitter
 
 def process_input(urls, question):
-    model_local = ChatOllama(model="mistral")
+    model_local = ChatOllama(model="mistral:v0.2")
     
-    # Convert string of URLs to list
+    # URL 문자열을 목록으로 변환하기
     urls_list = urls.split("\n")
     docs = [WebBaseLoader(url).load() for url in urls_list]
     docs_list = [item for sublist in docs for item in sublist]
@@ -27,7 +27,8 @@ def process_input(urls, question):
     )
     retriever = vectorstore.as_retriever()
 
-    after_rag_template = """Answer the question based only on the following context:
+    after_rag_template = """
+    Answer the question based only on the following context:
     {context}
     Question: {question}
     """
@@ -43,8 +44,8 @@ def process_input(urls, question):
 
 # Define Gradio interface
 iface = gr.Interface(fn=process_input,
-                     inputs=[gr.Textbox(label="Enter URLs separated by new lines"), gr.Textbox(label="Question")],
+                     inputs=[gr.Textbox(label="Enter URLs 새 줄로 구분됩니다."), gr.Textbox(label="Question")],
                      outputs="text",
-                     title="Document Query with Ollama",
-                     description="Enter URLs and a question to query the documents.")
+                     title="Ollama를 사용한 문서 조회",
+                     description="URL과 질문을 입력하여 문서를 조회하세요.")
 iface.launch()
